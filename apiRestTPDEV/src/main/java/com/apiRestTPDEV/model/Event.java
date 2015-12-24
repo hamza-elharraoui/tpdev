@@ -41,15 +41,18 @@ public class Event {
 	@ManyToOne
 	@JoinColumn(name = "museum_id")
 	private Museum museum;
+	@Column(name="participants")
+	private Integer participants=1;
 
 	public Event() {
 	}
 
-	public Event(String name, Date date, User user, Museum museum) {
+	public Event(String name, Date date, User user, Museum museum, Integer participants) {
 		this.name = name;
 		this.date = date;
 		this.user = user;
 		this.museum = museum;
+		this.participants=participants;
 	}
 
 	public Long getId() {
@@ -90,6 +93,14 @@ public class Event {
 
 	public void setMuseum(Museum museum) {
 		this.museum = museum;
+	}
+
+	public Integer getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(Integer participants) {
+		this.participants = participants;
 	}
 
 }

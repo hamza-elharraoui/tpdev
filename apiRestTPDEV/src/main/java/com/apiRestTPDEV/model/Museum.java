@@ -26,47 +26,57 @@ public class Museum {
 	private Long lat;
 	@Column(name = "lon")
 	private Long lon;
-	@OneToMany( mappedBy = "museum" )
+	@OneToMany(mappedBy = "museum")
 	private List<Event> events = new ArrayList<Event>();
+
 	public Museum() {
 	}
-	public Museum(String name, Long lat, Long lon, List<Event> events) {
+
+	public Museum(String name, Long lat, Long lon) {
 		super();
 		this.name = name;
 		this.lat = lat;
 		this.lon = lon;
-		this.events = events;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public Long getLat() {
 		return lat;
 	}
+
 	public void setLat(Long lat) {
 		this.lat = lat;
 	}
+
 	public Long getLon() {
 		return lon;
 	}
+
 	public void setLon(Long lon) {
 		this.lon = lon;
 	}
+
 	public List<Event> getEvents() {
 		return events;
 	}
+
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-	
 
 }

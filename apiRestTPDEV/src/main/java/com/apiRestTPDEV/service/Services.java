@@ -18,7 +18,7 @@ import com.apiRestTPDEV.model.Event;
 import com.sun.jersey.api.client.ClientResponse.Status;
 
 @Path("/events")
-public class EventService {
+public class Services {
 
 	private EventDAO eventDAO = new EventDAO();
 	private UserDAO userDAO = new UserDAO();
