@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.apiRestTPDEV.dao.EventDAO;
+import com.apiRestTPDEV.dao.MuseumDAO;
 import com.apiRestTPDEV.dao.UserDAO;
 import com.apiRestTPDEV.model.Event;
 import com.sun.jersey.api.client.ClientResponse.Status;
@@ -22,6 +23,7 @@ public class Services {
 
 	private EventDAO eventDAO = new EventDAO();
 	private UserDAO userDAO = new UserDAO();
+	private MuseumDAO museumDAO = new MuseumDAO();
 
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,
@@ -30,6 +32,18 @@ public class Services {
 	public Response addEvent(Event e) {
 		eventDAO.addEvent(e);
 		return Response.status(Status.CREATED).entity("The event is created")
+				.build();
+	}
+	@Path("/subscribe/{id}")
+	@POST
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML,
+			MediaType.APPLICATION_FORM_URLENCODED })
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response subscribe(@PathParam("id")Long id) {
+		Event e = eventDAO.getEventById(id);
+		e.setParticipants(e.getParticipants()+1);
+		eventDAO.updateEvent(e);
+		return Response.status(Status.CREATED).entity("You have joined the event")
 				.build();
 	}
 
@@ -77,5 +91,13 @@ public class Services {
 
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
+	}
+
+	public MuseumDAO getMuseumDAO() {
+		return museumDAO;
+	}
+
+	public void setMuseumDAO(MuseumDAO museumDAO) {
+		this.museumDAO = museumDAO;
 	}
 }

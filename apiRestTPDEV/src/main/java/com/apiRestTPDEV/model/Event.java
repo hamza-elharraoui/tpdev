@@ -47,12 +47,11 @@ public class Event {
 	public Event() {
 	}
 
-	public Event(String name, Date date, User user, Museum museum, Integer participants) {
+	public Event(String name, Date date, User user, Museum museum) {
 		this.name = name;
 		this.date = date;
 		this.user = user;
 		this.museum = museum;
-		this.participants=participants;
 	}
 
 	public Long getId() {

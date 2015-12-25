@@ -31,6 +31,25 @@ public class EventDAO {
 		}
 
 	}
+public void updateEvent(Event event){
+		
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			session.update(event);
+			if(!tx.wasCommitted())
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+	}
 	
 	public Event getEventById(Long id){
 		Session session = HibernateUtil.getSessionFactory().openSession();
